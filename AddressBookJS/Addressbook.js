@@ -1,79 +1,71 @@
-var person = {
-    firstName:"", 
-    lastName:"",
-    address:"",
-    city:"",
-    state:"",
-    zip:"",
-    phone:"",
-    email:""
-  };
-  validateName(person.firstName = prompt("Please enter your First name:"));
-  validateName(person.lastName = prompt("Please enter your Last name:"));
-  validateACS(person.address = prompt("Please enter your Address:"));
-  validateACS(person.city =prompt("Please enter your City:"));
-  validateACS(person.state = prompt("Please enter your State:"));
-  validateZip(person.zip = prompt("Please enter your Zip:"));
-  validatePhone(person.phone = prompt("Please enter your Phone:"));
-  validateEmail(person.email = prompt("Please enter your Email:"));
-  console.log(person);
-  
-  function validatePhone(num) {
-      const re = /^[0-9]{1,2} [0-9]{10}$/g;
-      let result = num.match(re);
-      if (result) {
-          console.log('The number is valid.');
-      }
-      else {
-          let num = prompt('Enter number in XX XXXXXXXXX format:');
-          validatePhone(num);
-      }
-  }
-  
-  function validateName(name) {
-      const re = /^[A-Z][a-z]{2,}$/g;
-      let result = name.match(re);
-      if (result) {
-          console.log('The name is valid.');
-      }
-      else {
-          let name = prompt('Enter Name in Aabc format:');
-          validateName(name);
-      }
-  }
-  function validateACS(input) {
-      const re = /^[A-Z a-z]{4,}$/g;
-      let result = input.match(re);
-      if (result) {
-          console.log('The input is valid.');
-      }
-      else {
-          let input = prompt('Enter in abcd format:');
-          validateName(input);
-      }
-  }
-  function validateZip(zip) {
-      const re = /^[0-9]{5,}$/g;
-      let result = zip.match(re);
-      if (result) {
-          console.log('zip is valid.');
-      }
-      else {
-          let zip = prompt('Enter Zip in XXXXX format:');
-          validateZip(zip);
-      }
-  }
-  function validateEmail(email) {
-      const re = /^[a-z0-9]+([.+_-]?[a-z0-9]+)?@[a-z0-9]+[.]([a-z0-9]+[.])?[a-z]{2,}$/g;
-      let result = email.match(re);
-      if (result) {
-          console.log('The Email is valid.');
-      }
-      else {
-          let name = prompt('Enter Email in  format:');
-          validateEmail(email);
-      }
-  }
+class Person {
+    firstName;
+    lastName;
+    address;
+    city;
+    state;
+    zip;
+    phoneNumber;
+    email;
 
+    constructor(firstName, lastName, address, city, state, zip, phoneNumber, email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+}
+function addContact(firstName, lastName, address, city, state, zip, phoneNumber, email, addressBook) {
+    
+    newBook = addressBook.filter(contact => contact.firstName === firstName && contact.lastName === lastName);
+
+    newBook.reduce( () => countContacts++, countContacts = 0);
+
+    if (countContacts > 0) {
+        console.log(" Duplicate entry! try Unique Details");
+        return addressBook;
+    }
+
+    check = true;
+    check = check && nameCheck.test(firstName);
+    check = check && nameCheck.test(lastName);
+    check = check && addressCityStateCheck.test(address);
+    check = check && addressCityStateCheck.test(city);
+    check = check && addressCityStateCheck.test(state);
+    check = check && zipCheck.test(zip);
+    check = check && phoneCheck.test(phoneNumber);
+    check = check && emailCheck.test(email);
+
+    if(check == true) {
+        newContact = new Person(firstName, lastName, address, city, state, zip, phoneNumber, email);
+        addressBook.push(newContact);
+        console.log(" Contact entered successfully");
+    }
+    else {
+        console.log(" Please enter valid details!");
+    }
+
+    return addressBook;
+
+}
+
+nameCheck = new RegExp("^[A-Z][a-z]{2,}$");
+addressCityStateCheck = new RegExp("^[a-z A-Z]{4,}$");
+emailCheck = new RegExp("^[\\w+-]+(\\.[\\w-]+)*@[^_\\W]+(\\.[^_\\W]+)?(?=(\\.[^_\\W]{3,}$|\\.[a-zA-Z]{2}$)).*$");
+phoneCheck = new RegExp("^[0-9]{1,3}[\\s][0-9]{10}$");
+zipCheck = new RegExp("^[0-9]{3,6}$")
+
+addressBook = [];
+
+addressBook = addContact("Shekhar", "Jha", "Namkum", "Ranchi", "Jharkhand", 834010, "91 1234567890", "abc@gmail.com", addressBook);
+addressBook = addContact("Rahul", "Singh", "Namkum", "Ranci", "Jharkhand", 345343, "91 1845672348", "xyz@gmail.com", addressBook);
+addressBook = addContact("Shekhar", "Jha", "Namkum", "Ranchi", "Jharkhand", 834010, "91 1234567890", "abc@gmail.com", addressBook);
+console.log(addressBook);
+
+  
 
 
