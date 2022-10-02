@@ -102,6 +102,19 @@ function editContact(addressBook, firstName, lastName, option, newValue) {
 
 }
 
+function deleteContact(addressBook, firstName, lastName) {
+    contact = findContact(firstName, lastName, addressBook);
+    index = addressBook.indexOf(contact);
+
+    if (index > -1) {
+        addressBook.splice(index, 1);
+        console.log(" Deleted element");
+    }
+
+    return addressBook;
+    
+}
+
 nameCheck = new RegExp("^[A-Z][a-z]{2,}$");
 addressCityStateCheck = new RegExp("^[a-z A-Z]{4,}$");
 emailCheck = new RegExp("^[\\w+-]+(\\.[\\w-]+)*@[^_\\W]+(\\.[^_\\W]+)?(?=(\\.[^_\\W]{3,}$|\\.[a-zA-Z]{2}$)).*$");
