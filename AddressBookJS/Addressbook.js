@@ -146,6 +146,31 @@ function viewCityState(addressBook, option, cityState) {
     }
 }
 
+function countCityState(addressBook, option) {
+    
+    cityState = new Map();
+
+    addressBook.forEach( (contact) => {
+        if (option === "city") {
+            if (cityState.get(contact.city) == null) {
+                cityState.set(contact.city, 1);
+            }
+            else {
+                cityState.set(contact.city, contact.get(cityState) + 1);
+            }
+        }
+        else {
+            if (cityState.get(contact.state) == null) {
+                cityState.set(contact.state, 1);
+            }
+            else {
+                cityState.set(contact.state, contact.get(cityState) + 1);
+            }
+        }
+    });
+
+    return cityState
+}
 
 nameCheck = new RegExp("^[A-Z][a-z]{2,}$");
 addressCityStateCheck = new RegExp("^[a-z A-Z]{4,}$");
