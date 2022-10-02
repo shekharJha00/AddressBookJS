@@ -52,6 +52,55 @@ function addContact(firstName, lastName, address, city, state, zip, phoneNumber,
     return addressBook;
 
 }
+function findContact(firstName, lastName) {
+
+    foundContact = null;
+    addressBook.forEach(contact => {
+        if (contact.firstName === firstName) {
+            if (contact.lastName === lastName) {
+                foundContact = contact;
+            }
+        }
+    });
+
+    if (foundContact == null) {
+        console.log(" The contact was not found!");
+    }
+
+    return foundContact;
+    
+}
+
+function editContact(addressBook, firstName, lastName, option, newValue) {
+    contact = findContact(firstName, lastName, addressBook);
+
+    if(contact == null) {
+        console.log(" the contact we got was null");
+        return null;
+    }
+
+    if (option === "address") {
+        contact.address = newValue;
+    }
+    else if (option === "city") {
+        contact.city = newValue;
+    }
+    else if (option === "state") {
+        contact.state = newValue;
+    }
+    else if (option === "zip") {
+        contact.zip = newValue;
+    }
+    else if (option === "phone") {
+        contact.phoneNumber = newValue;
+    }
+    else if (option === "email") {
+        contact.email = newValue;
+    }
+
+    return contact;
+
+}
 
 nameCheck = new RegExp("^[A-Z][a-z]{2,}$");
 addressCityStateCheck = new RegExp("^[a-z A-Z]{4,}$");
