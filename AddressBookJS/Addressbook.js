@@ -115,6 +115,16 @@ function deleteContact(addressBook, firstName, lastName) {
     
 }
 
+function count(addressBook) {
+    
+    addressBook.reduce( () => { 
+        countContacts++;
+    }, countContacts = 0);
+    
+    return countContacts;
+}
+
+
 nameCheck = new RegExp("^[A-Z][a-z]{2,}$");
 addressCityStateCheck = new RegExp("^[a-z A-Z]{4,}$");
 emailCheck = new RegExp("^[\\w+-]+(\\.[\\w-]+)*@[^_\\W]+(\\.[^_\\W]+)?(?=(\\.[^_\\W]{3,}$|\\.[a-zA-Z]{2}$)).*$");
