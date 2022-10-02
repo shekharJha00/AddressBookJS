@@ -172,6 +172,44 @@ function countCityState(addressBook, option) {
     return cityState
 }
 
+function sortContacts(addressBook, option) {
+    return addressBook.sort( (contact1, contact2) => {
+
+        if (option === "name") {
+            first = contact1.firstName;
+            second = contact2.firstName;
+        }
+
+        else if (option === "city") {
+            first = contact1.city;
+            second = contact2.city;
+        }
+
+        else if (option === "state") {
+            first = contact1.state;
+            second = contact2.state;
+        }
+
+        else if (option === "zip") {
+            first = contact1.zip;
+            second = contact2.zip;
+        }
+
+        if (first < second) {
+            return -1;
+        }
+
+        else if (first > second) {
+            return 1;
+        }
+
+        else {
+            return 0;
+        }
+    });
+}
+
+
 nameCheck = new RegExp("^[A-Z][a-z]{2,}$");
 addressCityStateCheck = new RegExp("^[a-z A-Z]{4,}$");
 emailCheck = new RegExp("^[\\w+-]+(\\.[\\w-]+)*@[^_\\W]+(\\.[^_\\W]+)?(?=(\\.[^_\\W]{3,}$|\\.[a-zA-Z]{2}$)).*$");
@@ -184,7 +222,10 @@ addressBook = addContact("Shekhar", "Jha", "Namkum", "Ranchi", "Jharkhand", 8340
 addressBook = addContact("Rahul", "Singh", "Namkum", "Ranci", "Jharkhand", 345343, "91 1845672348", "xyz@gmail.com", addressBook);
 addressBook = addContact("Shekhar", "Jha", "Namkum", "Ranchi", "Jharkhand", 834010, "91 1234567890", "abc@gmail.com", addressBook);
 console.log(addressBook);
-
+console.log(sortContacts(addressBook, "zip"));
+console.log(countCityState(addressBook, "city"));
+console.log(countCityState(addressBook, "state"));
+console.log(" Count of contacts = ", count(addressBook) );
 
   
 
