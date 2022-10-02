@@ -135,6 +135,18 @@ function searchCityState(addressBook, option, cityState) {
     }
 }
 
+function viewCityState(addressBook, option, cityState) {
+    
+    if (option === "city") {
+        return addressBook.filter( contact => contact.city === cityState);
+    }
+    
+    else {
+        return addressBook.filter( contact => contact.state === cityState);
+    }
+}
+
+
 nameCheck = new RegExp("^[A-Z][a-z]{2,}$");
 addressCityStateCheck = new RegExp("^[a-z A-Z]{4,}$");
 emailCheck = new RegExp("^[\\w+-]+(\\.[\\w-]+)*@[^_\\W]+(\\.[^_\\W]+)?(?=(\\.[^_\\W]{3,}$|\\.[a-zA-Z]{2}$)).*$");
