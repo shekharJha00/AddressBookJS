@@ -19,6 +19,7 @@ class Person {
         this.email = email;
     }
 }
+
 function addContact(firstName, lastName, address, city, state, zip, phoneNumber, email, addressBook) {
     
     newBook = addressBook.filter(contact => contact.firstName === firstName && contact.lastName === lastName);
@@ -29,7 +30,6 @@ function addContact(firstName, lastName, address, city, state, zip, phoneNumber,
         console.log(" Duplicate entry! try Unique Details");
         return addressBook;
     }
-
     check = true;
     check = check && nameCheck.test(firstName);
     check = check && nameCheck.test(lastName);
@@ -124,6 +124,16 @@ function count(addressBook) {
     return countContacts;
 }
 
+function searchCityState(addressBook, option, cityState) {
+    
+    if (option === "city") {
+        return addressBook.filter( contact => contact.city === cityState).map(contact => contact.firstName);
+    }
+    
+    else {
+        return addressBook.filter( contact => contact.state === cityState).map(contact => contact.firstName);
+    }
+}
 
 nameCheck = new RegExp("^[A-Z][a-z]{2,}$");
 addressCityStateCheck = new RegExp("^[a-z A-Z]{4,}$");
@@ -137,6 +147,7 @@ addressBook = addContact("Shekhar", "Jha", "Namkum", "Ranchi", "Jharkhand", 8340
 addressBook = addContact("Rahul", "Singh", "Namkum", "Ranci", "Jharkhand", 345343, "91 1845672348", "xyz@gmail.com", addressBook);
 addressBook = addContact("Shekhar", "Jha", "Namkum", "Ranchi", "Jharkhand", 834010, "91 1234567890", "abc@gmail.com", addressBook);
 console.log(addressBook);
+
 
   
 
